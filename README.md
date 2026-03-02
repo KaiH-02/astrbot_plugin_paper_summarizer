@@ -1,14 +1,41 @@
-# astrbot-plugin-helloworld
+# Paper Summarizer Plugin
 
-AstrBot 插件模板 / A template plugin for AstrBot plugin feature
+AstrBot 插件：上传 PDF 自动中文总结 Abstract。
 
-> [!NOTE]
-> This repo is just a template of [AstrBot](https://github.com/AstrBotDevs/AstrBot) Plugin.
-> 
-> [AstrBot](https://github.com/AstrBotDevs/AstrBot) is an agentic assistant for both personal and group conversations. It can be deployed across dozens of mainstream instant messaging platforms, including QQ, Telegram, Feishu, DingTalk, Slack, LINE, Discord, Matrix, etc. In addition, it provides a reliable and extensible conversational AI infrastructure for individuals, developers, and teams. Whether you need a personal AI companion, an intelligent customer support agent, an automation assistant, or an enterprise knowledge base, AstrBot enables you to quickly build AI applications directly within your existing messaging workflows.
+## 功能
 
-# Supports
+- /paper 指令触发
+- 60 秒内上传 PDF
+- 自动提取 Abstract
+- 调用 Ollama 模型中文总结
+- 自动删除文件
+- 严格 session 隔离
 
-- [AstrBot Repo](https://github.com/AstrBotDevs/AstrBot)
-- [AstrBot Plugin Development Docs (Chinese)](https://docs.astrbot.app/dev/star/plugin-new.html)
-- [AstrBot Plugin Development Docs (English)](https://docs.astrbot.app/en/dev/star/plugin-new.html)
+## 依赖
+
+- AstrBot >= 4.9.2
+- Ollama
+- pdfplumber
+- requests
+
+## 环境变量
+
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=gemma3:27b
+
+## 文件存储位置
+
+data/plugin_data/paper_summarizer/
+
+处理完成后自动删除。
+
+## 使用方法
+
+/paper  
+上传 PDF 文件
+
+## 说明
+
+- 仅支持包含 "Abstract" 字样的论文
+- 默认只扫描前 3 页
+- 中间处理状态不对用户显示
